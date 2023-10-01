@@ -73,6 +73,6 @@ public class TP1_convertisseur_MACZKOWIAK {
         return (CelciusVersFarenheit(KelvinVersCelcius(tKelvin)));
     }
     public static double FarenheitVersKelvin(double tFarenheit){
-        return (FarenheitVersCelcius(CelciusVersKelvin(tFarenheit)));
+        return (CelciusVersKelvin(FarenheitVersCelcius(tFarenheit)));
     }
 }
