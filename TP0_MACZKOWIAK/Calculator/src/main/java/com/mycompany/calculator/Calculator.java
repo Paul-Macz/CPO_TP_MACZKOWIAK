@@ -28,7 +28,7 @@ public class Calculator {
                            5) modulo""");
         Scanner sc = new Scanner(System.in);
         operateur = sc.nextInt();
-        if (operateur < 0 || operateur > 5) {
+        if (operateur < 1 || operateur > 5) {
             System.out.println("Please choose a number corresponding to an operator");
             System.exit(0);
         }
