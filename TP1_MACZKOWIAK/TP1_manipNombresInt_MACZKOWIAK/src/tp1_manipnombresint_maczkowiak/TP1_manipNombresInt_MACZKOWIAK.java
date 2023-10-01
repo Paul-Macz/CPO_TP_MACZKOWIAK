@@ -27,7 +27,11 @@ public class TP1_manipNombresInt_MACZKOWIAK {
         nb1 = sc.nextInt();
         System.out.println("\n Entrer un autre nombre :");
         nb2 = sc.nextInt();
-        System.out.println("Voici differentes interactions entre les nombres "+nb1+" et "+nb2+": \n Somme : "+ (nb1+nb2) +"\n Difference : "+(nb1-nb2)+"\n Produit : "+(nb1*nb2)+"\n Quotient entier : "+(nb1/nb2)+"\n Reste par la division euclidienne : "+(nb1%nb2));
+        System.out.println("Voici differentes interactions entre les nombres "+nb1+" et "+nb2+": \n Somme : "+ (nb1+nb2) 
+                +"\n Difference : "+(nb1-nb2)+
+                "\n Produit : "+(nb1*nb2)+
+                "\n Quotient entier : "+(nb1/nb2)+
+                "\n Reste par la division euclidienne : "+(nb1%nb2));
         
     }
 
