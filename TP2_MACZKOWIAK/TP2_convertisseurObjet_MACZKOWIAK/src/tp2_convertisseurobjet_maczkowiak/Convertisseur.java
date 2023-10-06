@@ -33,11 +33,9 @@ public class Convertisseur {
         return((1.8*tCelcius)+32);
     }
     public double KelvinVersFarenheit(double tKelvin){
-        ++nbConversions;
         return (CelciusVersFarenheit(KelvinVersCelcius(tKelvin)));
     }
     public double FarenheitVersKelvin(double tFarenheit){
-        ++nbConversions;
         return (CelciusVersKelvin(FarenheitVersCelcius(tFarenheit)));
     }
     @Override
