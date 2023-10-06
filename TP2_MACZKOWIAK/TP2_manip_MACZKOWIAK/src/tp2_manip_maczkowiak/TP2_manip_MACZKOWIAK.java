@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+* Nom: Paul Maczkowiak
+* Groupe: TDC
+* TP2 Exercice 3
+* Date: 06/10/23
  */
 package tp2_manip_maczkowiak;
 
