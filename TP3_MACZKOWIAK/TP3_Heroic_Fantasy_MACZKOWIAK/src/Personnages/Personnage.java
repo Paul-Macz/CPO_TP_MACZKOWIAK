@@ -12,7 +12,7 @@ import tp3_heroic_fantasy_maczkowiak.etreVivant;
  *
  * @author lukha
  */
-public abstract class Personnage implements etreVivant{
+public abstract class Personnage implements etreVivant {
 
     private String nom;
     private int hp;
@@ -20,50 +20,51 @@ public abstract class Personnage implements etreVivant{
     private Arme Arme_en_Main;
     private String Armedepredilection;
     static int nbPerso;
-    
+
     @Override
-    public void seFatiguer(){
-        hp-=10;
+    public void seFatiguer() {
+        hp -= 10;
     }
-    
+
     @Override
-    public boolean estVivant(){
-        if (hp>0){
-        return true;
+    public boolean estVivant() {
+        if (hp > 0) {
+            return true;
         }
         return false;
-    } 
-    
-    @Override
-    public void estAttaqué(int points){
-        hp-=points;
     }
-    
+
+    @Override
+    public void estAttaqué(int points) {
+        hp -= points;
+    }
+
     public void attaquer(Personnage cible) {
-        int damage=this.Arme_en_Main.getAtk();
+        int damage = this.Arme_en_Main.getAtk();
         if (this instanceof Guerrier && this.getArmesPredilection().contains(this.Arme_en_Main)) {
             Epee arme = (Epee) this.Arme_en_Main;
-            damage=damage*arme.getFinesse();
-        } 
-        else if (this instanceof Magicien && this.getArmesPredilection().contains(this.Arme_en_Main)) {
+            damage = damage * arme.getFinesse();
+        } else if (this instanceof Magicien && this.getArmesPredilection().contains(this.Arme_en_Main)) {
             Baton arme = (Baton) this.Arme_en_Main;
-            damage=damage*arme.getAge();
+            damage = damage * arme.getAge();
         }
         this.seFatiguer();
-        if (cible instanceof Magicien){
+        if (cible instanceof Magicien) {
             Magicien target = (Magicien) cible;
-            if (target.confirmed == true){
-                damage=damage/2;
+            if (target.confirmed == true) {
+                damage = damage / 2;
             }
         }
-        if (cible instanceof Guerrier){
+        if (cible instanceof Guerrier) {
             Guerrier target = (Guerrier) cible;
-            damage=damage/2;
+            if (target.onhorse == true) {
+                damage = damage / 2;
+            }
         }
-        
+
         cible.estAttaqué(damage);
     }
-    
+
     public Personnage(String nom, int hp, String armepred) {
         ++nbPerso;
         this.nom = nom;
@@ -72,7 +73,6 @@ public abstract class Personnage implements etreVivant{
         this.Armedepredilection = armepred;
     }
 
-    
     public ArrayList getArmesPredilection() {
         ArrayList<Arme> ArmesdePred = new ArrayList<>();
         for (int i = 0; i < Weapons.size(); ++i) {
@@ -100,7 +100,7 @@ public abstract class Personnage implements etreVivant{
     public static int getNbPerso() {
         return nbPerso;
     }
-    
+
     public ArrayList<Arme> getWeapons() {
         return Weapons;
     }
@@ -143,15 +143,14 @@ public abstract class Personnage implements etreVivant{
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
 
-    public void finalize(){
+    public void finalize() {
         nbPerso--;
     }
 
     @Override
     public String toString() {
-        return "Personnage{" + "nom=" + nom + ", hp=" + hp + ", arme equipee=" + Arme_en_Main + " vivant ?="+ estVivant() + '}';
+        return "Personnage{" + "nom=" + nom + ", hp=" + hp + ", arme equipee=" + Arme_en_Main + " vivant ?=" + estVivant() + '}';
     }
-    
+
 }
