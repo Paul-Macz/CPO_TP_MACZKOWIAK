@@ -18,6 +18,11 @@ public class GrilleDeJeu {
     int nbColonnes;
     CelluleLumineuse[][] matriceCellules;
     public static Random rand = new Random();
+    
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_RESET = "\u001B[0m"; 
 
     /**
      * Fait appel à "genererNouvelleMatriceCellulesLumineuses()" pour
@@ -165,22 +170,6 @@ public class GrilleDeJeu {
                 }
                 matriceCellules[nbLignes - i - 1][i+idDiagM].activerCellule();
             }
-        /*
-        if (this.nbColonnes == this.nbLignes) {
-            for (int i = 0; i < this.nbLignes; ++i) {
-                matriceCellules[nbLignes - i - 1][i].activerCellule();
-            }
-        }
-        if (this.nbLignes < this.nbColonnes) {
-            for (int i = 0; i < this.nbLignes; ++i) {
-                matriceCellules[nbLignes - i - 1][i].activerCellule();
-            }
-        }
-        if (this.nbColonnes < this.nbLignes) {
-            for (int j = 0; j < this.nbColonnes; ++j) {
-                matriceCellules[nbColonnes - j - 1][j].activerCellule();
-            }
-        }*/
     }
 
     /**
@@ -228,7 +217,16 @@ public class GrilleDeJeu {
         for (int i = 0; i < nbLignes; ++i) {
             line += " " + i + " |";
             for (int j = 0; j < nbColonnes; ++j) {
-                line += " " + matriceCellules[i][j] + " |";
+                if (matriceCellules[i][j].getEtat()==0){
+                    line+=ANSI_RED_BACKGROUND+" " + matriceCellules[i][j]+" "+ANSI_RESET;
+                }
+                if (matriceCellules[i][j].getEtat()==1){
+                    line+=ANSI_GREEN_BACKGROUND+" " + matriceCellules[i][j]+" "+ANSI_RESET;
+                }
+                if (matriceCellules[i][j].getEtat()==2){
+                    line+=ANSI_YELLOW_BACKGROUND+" " + matriceCellules[i][j]+" "+ANSI_RESET;
+                }
+                line += "|";
             }
             line += "\n" + interline;
             if (i != (nbLignes - 1)) {

@@ -21,6 +21,7 @@ public class Partie {
     int[] coord = new int[2];
     Scanner sc = new Scanner(System.in);
     public static Random rand = new Random();
+    
 
     /**
      * Initialise la grille entant que GrilleDeJeu 
@@ -87,14 +88,11 @@ public class Partie {
      */
     public void initialiserPartie() {
         this.grille.melangerMatriceAleatoirement(20);
-        System.out.println("dif "+difficulty);
         if (difficulty == 3) {
             this.nbCoups = 40;
         } else {
-            System.out.println("dang");
             this.nbCoups = 0;
         }
-        System.out.println("test1 "+nbCoups);
     }
 
     /**

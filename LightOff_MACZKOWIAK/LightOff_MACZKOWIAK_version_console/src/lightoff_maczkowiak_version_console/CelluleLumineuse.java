@@ -13,7 +13,6 @@ import java.util.Random;
  * @author lukha
  */
 public class CelluleLumineuse {
-
     public static Random rand = new Random();
     private int etat;
 
