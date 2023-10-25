@@ -18,7 +18,7 @@ public class Partie {
     private GrilleDeJeu grille;
     private int nbCoups;
     private static int difficulty=0;
-    private int[] coord = new int[2];
+    int[] coord = new int[2];
     Scanner sc = new Scanner(System.in);
     public static Random rand = new Random();
 
@@ -29,14 +29,17 @@ public class Partie {
      */
     public Partie() {
         this.Menu();
-        this.grille = new GrilleDeJeu(5, 5);
-        difficulty = 0;
+        this.grille = new GrilleDeJeu(coord[0], coord[1]);
     }
 
+    /**
+     * Génère l'interface pour sélectionner le niveau de difficulté 
+     * Détermine la taille de la matrice "grille" en fonction de la difficulté
+     */
     public void Menu() {
         int lvl, x_val = 2, y_val = 2;
         System.out.println("""
-                           Choisissez un niveau de difficulté:
+                           Choisissez un niveau de difficulte:
                            1)Facile
                            2)Normal
                            3)Difficile
@@ -55,8 +58,8 @@ public class Partie {
                 case 3:
                     difficulty = 3;
                     while (x_val == y_val) {
-                        x_val = rand.nextInt(7, 9);
-                        y_val = rand.nextInt(7, 9);
+                        x_val = rand.nextInt(7, 10);
+                        y_val = rand.nextInt(7, 10);
                     }
                     break;
                 default:
@@ -84,11 +87,14 @@ public class Partie {
      */
     public void initialiserPartie() {
         this.grille.melangerMatriceAleatoirement(20);
+        System.out.println("dif "+difficulty);
         if (difficulty == 3) {
-            this.nbCoups = 20;
+            this.nbCoups = 40;
         } else {
+            System.out.println("dang");
             this.nbCoups = 0;
         }
+        System.out.println("test1 "+nbCoups);
     }
 
     /**
@@ -105,6 +111,9 @@ public class Partie {
         System.out.println(grille);
         int op, select;
         while (grille.cellulesToutesEteintes() != true) {
+            if(difficulty==3){
+                System.out.println("Nombre de coups restants : "+nbCoups);
+            }
             select = grille.nbColonnes + 1;
             System.out.print("""
                              Selectionner l'action a effectuee:
@@ -138,11 +147,21 @@ public class Partie {
                     while (select != 1 || select != 2) {
                         select = sc.nextInt();
                         if (select == 1) {
-                            grille.activerDiagonaleDescendante();
+                            select=Math.max(grille.nbColonnes,grille.nbLignes)+1;
+                            while(select<0 ||select>Math.min(grille.nbColonnes,grille.nbLignes)-1){
+                                System.out.println("Choisir la diagonale a activer");
+                                select=sc.nextInt();
+                            }
+                            grille.activerDiagonaleDescendante(select);
                             break;
                         }
                         if (select == 2) {
-                            grille.activerDiagonaleMontante();
+                            select=Math.max(grille.nbColonnes,grille.nbLignes)+1;
+                            while(select<0 ||select>Math.min(grille.nbColonnes,grille.nbLignes)-1){
+                                System.out.println("Choisir la diagonale a activer");
+                                select=sc.nextInt();
+                            }
+                            grille.activerDiagonaleMontante(select);
                             break;
                         } else {
                             System.out.println("Selectionner une diagonale");
@@ -159,9 +178,8 @@ public class Partie {
             }
             else{
                 --nbCoups;
-                System.out.println("Nombre de coups restants : "+nbCoups);
-                
             }
+            System.out.println("test2 "+nbCoups);
             System.out.println(grille);
         }
         if(difficulty!=3){

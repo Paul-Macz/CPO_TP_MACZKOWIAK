@@ -49,19 +49,18 @@ public class CelluleLumineuse {
         } else {
             switch (etat) {
                 case 0:
-                    etat = rand.nextInt(1, 2);
+                    etat = rand.nextInt(1, 3);
                     break;
                 case 2:
                     etat=rand.nextInt(1);
                     break;
                 default:
                     while(etat==1){
-                        etat=rand.nextInt(2);
+                        etat=rand.nextInt(3);
                     break;
                     }
             }
         }
-
     }
 
     /**

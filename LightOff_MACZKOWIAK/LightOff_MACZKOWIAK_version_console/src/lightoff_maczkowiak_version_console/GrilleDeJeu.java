@@ -90,9 +90,9 @@ public class GrilleDeJeu {
      * Fait appel appele aux méthodes
      * "activerLigneDeCellules()",activerColonneDeCellules(),
      * activerDiagonaleDescendante() et activerDiagonaleMontante() en fonction
-     * du cas selectionné Ensuite tire un autre nombre aléatoire, en fonction de
-     * "nbLignes" et "nbColonnes", pour choisir quelle ligne, colonne ou
-     * diagonale changer
+     * du cas selectionné 
+     * Ensuite tire un autre nombre aléatoire, en fonction de "nbLignes" et "nbColonnes",
+     * pour choisir quelle ligne, colonne ou diagonale changer
      */
     public void activerLigneColonneOuDiagonaleAleatoire() {
     int alea = rand.nextInt(3);
@@ -108,10 +108,12 @@ public class GrilleDeJeu {
             }
             //Diagonale descendante
             if (alea == 2) {
-                this.activerDiagonaleDescendante();
+                int x = rand.nextInt(Math.min(nbColonnes,nbLignes)-1);
+                this.activerDiagonaleDescendante(x);
             } //Diagonale montante
             else {
-                this.activerDiagonaleMontante();
+                int x=rand.nextInt(nbColonnes-1);
+                this.activerDiagonaleMontante(x);
             }
 }
 
@@ -138,35 +140,32 @@ public class GrilleDeJeu {
     }
 
     /**
-     * Change l'état de toute les cellules de la diagonale descendante Varie
-     * légèrement si "matriceCellules" est une matrice carrée ou non: si
-     * nbLignes est supérieure ou inférieure à nbColonnes, elle changera l'état
-     * de toute les cellules jusqu'à atteindre la paroi basse ou droite
+     *Change l'état de toute les cellules d'une diagonale descendante choisie
+     * @param idDiagD Determine la cellule de la première ligne où commence la diagonale
      */
-    public void activerDiagonaleDescendante() {
-        if (this.nbLignes < this.nbColonnes) {
-            for (int i = 0; i < this.nbLignes; ++i) {
-                matriceCellules[i][i].activerCellule();
+    public void activerDiagonaleDescendante(int idDiagD) {
+        for (int i = 0; i < Math.min(nbLignes,nbColonnes); ++i) {
+                //Face atteinte ?
+                if(i+idDiagD==Math.min(nbLignes, nbColonnes)){
+                    break;
+                }
+                matriceCellules[i][i+idDiagD].activerCellule();
             }
-        }
-        if (this.nbColonnes < this.nbLignes) {
-            for (int j = 0; j < this.nbColonnes; ++j) {
-                matriceCellules[j][j].activerCellule();
-            }
-        } else {
-            for (int i = 0; i < this.nbLignes; ++i) {
-                matriceCellules[i][i].activerCellule();
-            }
-        }
     }
 
     /**
-     * Change l'état de toute les cellules de la diagonale montante Varie
-     * légèrement si "matriceCellules" est une matrice carrée ou non: si
-     * nbLignes est supérieure ou inférieure à nbColonnes, elle changera l'état
-     * de toute les cellules jusqu'à atteindre la paroi haute ou droite
+     *Change l'état de toute les cellules d'une diagonale montante choisie
+     * @param idDiagM Determine la cellule de la dernière ligne où commence la diagonale
      */
-    public void activerDiagonaleMontante() {
+    public void activerDiagonaleMontante(int idDiagM) {
+        for (int i = 0; i < this.nbLignes; ++i) {
+                //Face atteinte ?
+                 if(i+idDiagM==Math.min(nbLignes, nbColonnes)){
+                    break;
+                }
+                matriceCellules[nbLignes - i - 1][i+idDiagM].activerCellule();
+            }
+        /*
         if (this.nbColonnes == this.nbLignes) {
             for (int i = 0; i < this.nbLignes; ++i) {
                 matriceCellules[nbLignes - i - 1][i].activerCellule();
@@ -181,7 +180,7 @@ public class GrilleDeJeu {
             for (int j = 0; j < this.nbColonnes; ++j) {
                 matriceCellules[nbColonnes - j - 1][j].activerCellule();
             }
-        }
+        }*/
     }
 
     /**
