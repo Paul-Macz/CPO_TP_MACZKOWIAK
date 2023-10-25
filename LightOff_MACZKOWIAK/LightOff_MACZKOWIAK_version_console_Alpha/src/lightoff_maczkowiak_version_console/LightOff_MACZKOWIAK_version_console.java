@@ -21,6 +21,7 @@ public class LightOff_MACZKOWIAK_version_console {
         Grid.genererMatriceAleatoire(100);
         System.out.println(Grid);*/
         Partie test= new Partie();
+        test.initialiserPartie();
         test.lancerPartie();
     }
     
