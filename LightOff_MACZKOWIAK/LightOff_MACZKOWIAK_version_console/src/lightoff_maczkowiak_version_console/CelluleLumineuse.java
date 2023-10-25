@@ -6,76 +6,107 @@
  */
 package lightoff_maczkowiak_version_console;
 
+import java.util.Random;
+
 /**
  *
  * @author lukha
  */
 public class CelluleLumineuse {
 
-    private boolean etat;
+    public static Random rand = new Random();
+    private int etat;
+
+    /*
+    * etat est désormais un entier compris entre 0 et 2:
+    * 0 est équivalent à l'ancien "false"
+    * 1 est équivalent à l'ancien "true"
+    * 2 est un etat intermédiaire
+     */
 
     /**
-     * Lorsque une cellule est créé, son état vaut par défaut "false"
+     * Lorsque une cellule est créé, son état vaut par défaut 0
      */
     public CelluleLumineuse() {
-        etat = false;
+        etat = 0;
+
     }
 
     /**
      * Change l'état d'une cellule
+     * Depend du niveau de difficulté:
+     * -Facile (1) : l'état oscille entre 0 et 1
+     * -Normale(2) ou difficile (3) : l'état prend une valeur aléatoire entre 
+     * 0 et 2, en excluant sa précédente valeur
      */
     public void activerCellule() {
-        if (etat == true) {
-            etat = false;
+        if (Partie.getDifficulty() == 1) {
+            if (etat == 0) {
+                etat = 1;
+            } else {
+                etat = 0;
+            }
         } else {
-            etat = true;
+            if (etat == 0) {
+                etat = rand.nextInt(1, 2);
+            }
+            if (etat==2){
+                etat=rand.nextInt(1);
+            }
+            else{
+                while(etat==1){
+                    etat=rand.nextInt(2);
+                }
+            }
         }
+
     }
 
     /**
-     * Change l'état de la cellule en false
+     *
+     * @return Retourne l'état de la cellule
+     */
+    public int getEtat() {
+        return etat;
+    }
+    
+    /**
+     * Change l'état de la cellule en 0
      */
     public void eteindreCellule() {
-        if (etat == true) {
-            etat = false;
+        if(etat!=0){
+            etat=0;
         }
     }
-
+    
     /**
-     * Verifie que l'état de la cellule vaut "false"
+     * Verifie que l'état de la cellule vaut 0"
      *
-     * @return Renvoie "true" si l'état est "false" et "false" si l'état est
-     * "true"
+     * @return Renvoie "true" si l'état est 0 et "false" sinon
      */
     public boolean estEteint() {
-        if (etat == true) {
+        if (etat != 0) {
             return false;
         } else {
             return true;
         }
     }
-
-    /**
-     *
-     * @return Retourne l'état actuel de la cellule
-     */
-    public boolean getEtat() {
-        return etat;
-    }
-
+    
     /**
      * Convertit l'état de la cellule sous une forme adéquate pour l'interface
      *
-     * @return Retourne "X" si son état est "true, ou "O" si son état est
-     * "false"
+     * @return Retourne "X" si son état est 1, "O" si son état est 0, ou "I" si 
+     * son état est 2
      */
     @Override
     public String toString() {
-        if (this.etat == true) {
+        if (this.etat == 1) {
             return "X";
-        } else {
+        }
+        if (this.etat==0){
             return "O";
         }
+        return "I";
     }
 
 }

@@ -82,7 +82,8 @@ public class GrilleDeJeu {
             activerLigneColonneOuDiagonaleAleatoire();
         }
     }
-    /*
+    
+    /**
      * Tire un nombre aléatoire entre 0 et 3, pour choisir si on change l'état
      * des cellules d'une ligne, d'une colonne, ou d'une diagonale aléatoire
      * Fait appel appele aux méthodes
@@ -91,7 +92,7 @@ public class GrilleDeJeu {
      * du cas selectionné Ensuite tire un autre nombre aléatoire, en fonction de
      * "nbLignes" et "nbColonnes", pour choisir quelle ligne, colonne ou
      * diagonale changer
-    */
+     */
     public void activerLigneColonneOuDiagonaleAleatoire() {
     int alea = rand.nextInt(3);
             //Ligne aléatoire
