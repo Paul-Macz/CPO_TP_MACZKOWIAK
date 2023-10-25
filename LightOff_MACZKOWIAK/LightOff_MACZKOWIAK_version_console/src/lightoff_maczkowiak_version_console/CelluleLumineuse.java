@@ -31,7 +31,7 @@ public class CelluleLumineuse {
         etat = 0;
 
     }
-
+    
     /**
      * Change l'état d'une cellule
      * Depend du niveau de difficulté:
@@ -47,16 +47,18 @@ public class CelluleLumineuse {
                 etat = 0;
             }
         } else {
-            if (etat == 0) {
-                etat = rand.nextInt(1, 2);
-            }
-            if (etat==2){
-                etat=rand.nextInt(1);
-            }
-            else{
-                while(etat==1){
-                    etat=rand.nextInt(2);
-                }
+            switch (etat) {
+                case 0:
+                    etat = rand.nextInt(1, 2);
+                    break;
+                case 2:
+                    etat=rand.nextInt(1);
+                    break;
+                default:
+                    while(etat==1){
+                        etat=rand.nextInt(2);
+                    break;
+                    }
             }
         }
 
@@ -103,10 +105,12 @@ public class CelluleLumineuse {
         if (this.etat == 1) {
             return "X";
         }
-        if (this.etat==0){
+        else if (this.etat==0){
             return "O";
         }
-        return "I";
+        else{
+            return "I";
+        }
     }
 
 }

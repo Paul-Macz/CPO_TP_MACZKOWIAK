@@ -19,6 +19,8 @@ public class LightOff_MACZKOWIAK_version_console {
         Partie test= new Partie();
         test.initialiserPartie();
         test.lancerPartie();
+        //GrilleDeJeu grid = new GrilleDeJeu(5,5);
+        
     }
     
 }

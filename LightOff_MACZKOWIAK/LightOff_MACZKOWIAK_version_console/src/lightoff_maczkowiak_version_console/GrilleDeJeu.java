@@ -36,9 +36,10 @@ public class GrilleDeJeu {
         for (int i = 0; i < this.nbLignes; ++i) {
             for (int j = 0; j < this.nbColonnes; ++j) {
                 matriceCellules[i][j] = new CelluleLumineuse();
-                matriceCellules[i][j].eteindreCellule();
+                matriceCellules[i][j].eteindreCellule();  
             }
         }
+
     }
 
     /**

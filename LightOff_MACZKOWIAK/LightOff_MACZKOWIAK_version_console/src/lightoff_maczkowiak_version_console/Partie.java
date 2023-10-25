@@ -17,7 +17,7 @@ public class Partie {
 
     private GrilleDeJeu grille;
     private int nbCoups;
-    private static int difficulty;
+    private static int difficulty=0;
     private int[] coord = new int[2];
     Scanner sc = new Scanner(System.in);
     public static Random rand = new Random();
@@ -28,6 +28,7 @@ public class Partie {
      * la selection de la difficulté dans "Menu()"
      */
     public Partie() {
+        this.Menu();
         this.grille = new GrilleDeJeu(5, 5);
         difficulty = 0;
     }
@@ -42,28 +43,29 @@ public class Partie {
                            """);
         while (difficulty == 0) {
             lvl = sc.nextInt();
-            if(lvl==1){
-                difficulty = 1;
-                x_val = y_val = 4;
-            }
-            if(lvl==2){
-                difficulty = 2;
-                x_val = y_val = 6;
-            }
-            if (lvl==3){
-                difficulty = 3;
+            switch (lvl) {
+                case 1:
+                    difficulty = 1;
+                    x_val = y_val = 4;
+                    break;
+                case 2:
+                    difficulty = 2;
+                    x_val = y_val = 6;
+                    break;
+                case 3:
+                    difficulty = 3;
                     while (x_val == y_val) {
                         x_val = rand.nextInt(7, 9);
                         y_val = rand.nextInt(7, 9);
                     }
+                    break;
+                default:
+                    System.out.println("Veuillez choisir un niveau de difficulté existant");
+                    break;
             }
-            else{
-                System.out.println("Veuillez choisir un niveau de difficulté existant");
-                }
         }
         coord[0] = x_val;
         coord[1] = y_val;
-        grille.genererNouvelleMatriceCellulesLumineuses(coord[0], coord[1]);
     }
 
     /**
@@ -132,13 +134,16 @@ public class Partie {
                                        1)Diagonale descendante
                                        2)Diagonale montante
                                        """);
-                    select = sc.nextInt();
+                    select=0;
                     while (select != 1 || select != 2) {
+                        select = sc.nextInt();
                         if (select == 1) {
                             grille.activerDiagonaleDescendante();
+                            break;
                         }
                         if (select == 2) {
                             grille.activerDiagonaleMontante();
+                            break;
                         } else {
                             System.out.println("Selectionner une diagonale");
                         }
