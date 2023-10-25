@@ -18,13 +18,20 @@ public class Partie {
 
     /**
      *Initialise la grille entant que GrilleDeJeu
-     * Ensuite appèle "melangerMatriceAleatoirement()" pour changer l'état des cellules
-     * de façon aléatoire, puis initialise le nombre de coups joué "nbCoups" à 0.
+     * Ensuite, initialise le nombre de coups joué "nbCoups" à 0.
      */
     public Partie() {
         this.grille = new GrilleDeJeu(2, 2);
-        this.grille.melangerMatriceAleatoirement(20);
+        
         this.nbCoups = 0;
+    }
+
+    /**
+     * Appèle "melangerMatriceAleatoirement()" pour changer l'état des cellules
+     * de façon aléatoire
+     */
+    public void initialiserPartie(){
+        this.grille.melangerMatriceAleatoirement(20);
     }
 
     /**
@@ -50,14 +57,14 @@ public class Partie {
             switch (op) {
                 case 1:
                     while (select > grille.nbLignes || select < 0) {
-                        System.out.print("Choisir la ligne a activer");
+                        System.out.println("Choisir la ligne a activer");
                         select = sc.nextInt();
                     }
                     grille.activerLigneDeCellules(select);
                     break;
                 case 2:
                     while (select > grille.nbColonnes || select < 0) {
-                        System.out.print("Choisir la colonne a activer");
+                        System.out.println("Choisir la colonne a activer");
                         select = sc.nextInt();
                     }
                     grille.activerColonneDeCellules(select);
@@ -77,7 +84,7 @@ public class Partie {
                             grille.activerDiagonaleMontante();
                             break;
                         default:
-                            System.out.print("Selectionner une diagonale");
+                            System.out.println("Selectionner une diagonale");
                             break;
                             
                     }
@@ -86,6 +93,7 @@ public class Partie {
                     break;
             }
             ++nbCoups;
+            System.out.println(nbCoups);
             System.out.println(grille);
         }
         System.out.println(nbCoups);
