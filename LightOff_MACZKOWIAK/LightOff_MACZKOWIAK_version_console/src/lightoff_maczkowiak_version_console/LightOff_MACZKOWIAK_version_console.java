@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+* Nom: Paul Maczkowiak
+* Groupe: TDC
+* Mini Projet - LightOff
+* Date: 25/10/23
  */
 package lightoff_maczkowiak_version_console;
 

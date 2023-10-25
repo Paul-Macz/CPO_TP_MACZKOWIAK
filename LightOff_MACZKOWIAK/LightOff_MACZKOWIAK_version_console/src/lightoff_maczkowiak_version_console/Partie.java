@@ -16,12 +16,25 @@ public class Partie {
     private int nbCoups;
     Scanner sc = new Scanner(System.in);
 
+    /**
+     *Initialise la grille entant que GrilleDeJeu
+     * Ensuite appèle "melangerMatriceAleatoirement()" pour changer l'état des cellules
+     * de façon aléatoire, puis initialise le nombre de coups joué "nbCoups" à 0.
+     */
     public Partie() {
         this.grille = new GrilleDeJeu(2, 2);
-        this.grille.genererMatriceAleatoire(20);
+        this.grille.melangerMatriceAleatoirement(20);
         this.nbCoups = 0;
     }
 
+    /**
+     * Emule la boucle de jeu
+     * Affiche la grille puis lance la boucle de jeu jusqu'à ce que l'ensemble des
+     * cellules sont à l'état "false", via "cellulesToutesEteintes()"
+     * Affiche les actions possibles: d'abord si on souhaite changer une ligne,
+     * une colonne ou une diagonale, puis laquelle on souhaite changer
+     * Affiche ensuite la grille mise à jour et incrémente "nbCoups"
+     */
     public void lancerPartie() {
         System.out.println(grille);
         int op, select;
