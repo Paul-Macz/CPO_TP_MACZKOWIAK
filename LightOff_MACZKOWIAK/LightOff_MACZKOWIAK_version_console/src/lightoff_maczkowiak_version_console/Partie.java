@@ -107,7 +107,7 @@ public class Partie {
      */
     public void lancerPartie() {
         System.out.println(grille);
-        int op, select;
+        int op=-1, select=-1;
         while (grille.cellulesToutesEteintes() != true) {
             if(difficulty==3){
                 System.out.println("Nombre de coups restants : "+nbCoups);
@@ -122,14 +122,14 @@ public class Partie {
             op = sc.nextInt();
             switch (op) {
                 case 1:
-                    while (select > grille.nbLignes || select < 0) {
+                    while (select > grille.nbLignes-1 || select < 0) {
                         System.out.println("Choisir la ligne a activer");
                         select = sc.nextInt();
                     }
                     grille.activerLigneDeCellules(select);
                     break;
                 case 2:
-                    while (select > grille.nbColonnes || select < 0) {
+                    while (select > grille.nbColonnes-1 || select < 0) {
                         System.out.println("Choisir la colonne a activer");
                         select = sc.nextInt();
                     }
@@ -170,6 +170,7 @@ public class Partie {
                     System.out.println("Selectionner une operation");
                     break;
             }
+            select=-1;
             if(difficulty!=3){
                 ++nbCoups;
                 System.out.println("Nombre de coups effectués : "+nbCoups);
@@ -177,7 +178,6 @@ public class Partie {
             else{
                 --nbCoups;
             }
-            System.out.println("test2 "+nbCoups);
             System.out.println(grille);
         }
         if(difficulty!=3){
