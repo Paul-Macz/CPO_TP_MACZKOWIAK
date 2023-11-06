@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lightoff_maczkowiak_version_console;
+package lightoff_maczkowiak_version_graphique;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -25,6 +25,7 @@ public class CelluleGraphique extends JLabel{
         celluleAssocié=uneCellule;
     }
     
+   
     public static ImageIcon getScaledIcon(ImageIcon Img, int width, int height ){
         
         Image srcImage = Img.getImage();

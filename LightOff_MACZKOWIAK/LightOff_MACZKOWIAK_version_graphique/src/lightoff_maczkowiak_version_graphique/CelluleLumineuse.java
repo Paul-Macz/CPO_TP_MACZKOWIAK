@@ -4,7 +4,7 @@
 * Mini Projet - LightOff
 * Date: 25/10/23
  */
-package lightoff_maczkowiak_version_console;
+package lightoff_maczkowiak_version_graphique;
 
 import java.util.Random;
 

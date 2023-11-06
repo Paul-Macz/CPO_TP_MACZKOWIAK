@@ -4,7 +4,7 @@
 * Mini Projet - LightOff
 * Date: 25/10/23
  */
-package lightoff_maczkowiak_version_console;
+package lightoff_maczkowiak_version_graphique;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -29,7 +29,6 @@ public class Partie {
      * la selection de la difficulté dans "Menu()"
      */
     public Partie() {
-        this.Menu();
         this.grille = new GrilleDeJeu(coord[0], coord[1]);
     }
 
@@ -37,40 +36,7 @@ public class Partie {
      * Génère l'interface pour sélectionner le niveau de difficulté 
      * Détermine la taille de la matrice "grille" en fonction de la difficulté
      */
-    public void Menu() {
-        int lvl, x_val = 2, y_val = 2;
-        System.out.println("""
-                           Choisissez un niveau de difficulte:
-                           1)Facile
-                           2)Normal
-                           3)Difficile
-                           """);
-        while (difficulty == 0) {
-            lvl = sc.nextInt();
-            switch (lvl) {
-                case 1:
-                    difficulty = 1;
-                    x_val = y_val = 4;
-                    break;
-                case 2:
-                    difficulty = 2;
-                    x_val = y_val = 6;
-                    break;
-                case 3:
-                    difficulty = 3;
-                    while (x_val == y_val) {
-                        x_val = rand.nextInt(7, 10);
-                        y_val = rand.nextInt(7, 10);
-                    }
-                    break;
-                default:
-                    System.out.println("Veuillez choisir un niveau de difficulté existant");
-                    break;
-            }
-        }
-        coord[0] = x_val;
-        coord[1] = y_val;
-    }
+    
 
     /**
      *

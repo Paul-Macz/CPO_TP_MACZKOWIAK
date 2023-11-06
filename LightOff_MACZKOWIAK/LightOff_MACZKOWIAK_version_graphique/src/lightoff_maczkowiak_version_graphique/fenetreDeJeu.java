@@ -2,14 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package lightoff_maczkowiak_version_console;
+package lightoff_maczkowiak_version_graphique;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static lightoff_maczkowiak_version_console.Partie.rand;
+import javax.swing.SwingUtilities;
+import static lightoff_maczkowiak_version_graphique.Partie.rand;
 
 /**
  *
@@ -22,13 +25,27 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private static int difficulty = 0;
     int[] coord = new int[2];
     static int img_size = 60;
+    int x, y;
 
     /**
      * Creates new form fenetreDeJeu
      */
     public fenetreDeJeu() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        int x = (getWidth() - panneau_difficultés.getWidth()) / 2;
+
+        panneau_difficultés.setLocation(x, panneau_difficultés.getHeight());
+        panneau_difficultés.setMaximumSize(new Dimension(530, 540));
+        panneau_ligne.setMaximumSize(new Dimension(60, 540));
+        panneau_colonne_diagD.setMaximumSize(new Dimension(530, 50));
+        panneau_diagM.setMaximumSize(new Dimension(530, 50));
+
+        panneau_difficultés.repaint();
         panneau_grille.setVisible(false);
+        panneau_diagM.setVisible(false);
+        panneau_colonne_diagD.setVisible(false);
+        panneau_ligne.setVisible(false);
         panneau_info_partie.setVisible(false);
 
     }
@@ -42,7 +59,10 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panneau_colonne_diagD = new javax.swing.JPanel();
         panneau_grille = new javax.swing.JPanel();
+        panneau_diagM = new javax.swing.JPanel();
+        panneau_ligne = new javax.swing.JPanel();
         panneau_difficultés = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Difficile = new javax.swing.JButton();
@@ -56,40 +76,49 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         setName("frame"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panneau_colonne_diagD.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(panneau_colonne_diagD, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, 50));
+
         panneau_grille.setBackground(new java.awt.Color(255, 255, 255));
         panneau_grille.setLayout(new java.awt.GridLayout(7, 9));
-        getContentPane().add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        getContentPane().add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        panneau_diagM.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(panneau_diagM, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 600, -1, 50));
+
+        panneau_ligne.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(panneau_ligne, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, -1));
 
         panneau_difficultés.setBackground(new java.awt.Color(102, 102, 102));
         panneau_difficultés.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panneau_difficultés.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sélectionner une difficulté :");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panneau_difficultés.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+        panneau_difficultés.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        Difficile.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        Difficile.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         Difficile.setText("Difficile");
         Difficile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DifficileActionPerformed(evt);
             }
         });
-        panneau_difficultés.add(Difficile, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
+        panneau_difficultés.add(Difficile, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
-        Facile.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        Facile.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         Facile.setText("Facile");
         Facile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FacileActionPerformed(evt);
             }
         });
-        panneau_difficultés.add(Facile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        panneau_difficultés.add(Facile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
-        Normal.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        Normal.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         Normal.setText("Normal");
         Normal.setAlignmentY(0.0F);
         Normal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -98,26 +127,26 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                 NormalActionPerformed(evt);
             }
         });
-        panneau_difficultés.add(Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+        panneau_difficultés.add(Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
-        getContentPane().add(panneau_difficultés, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 280, 80));
+        getContentPane().add(panneau_difficultés, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 370, 150));
 
         panneau_info_partie.setBackground(new java.awt.Color(0, 51, 51));
         panneau_info_partie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_txt_nbCoups.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        label_txt_nbCoups.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         label_txt_nbCoups.setForeground(new java.awt.Color(255, 255, 255));
         label_txt_nbCoups.setText("Nombre de coups effectués :");
-        panneau_info_partie.add(label_txt_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        panneau_info_partie.add(label_txt_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-        label_nbCoups.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        label_nbCoups.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         label_nbCoups.setForeground(new java.awt.Color(255, 255, 255));
         label_nbCoups.setText("jLabel4");
-        panneau_info_partie.add(label_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+        panneau_info_partie.add(label_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
 
-        getContentPane().add(panneau_info_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 320, 280, 80));
+        getContentPane().add(panneau_info_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 370, 140));
 
-        setBounds(0, 0, 1209, 653);
+        setBounds(0, 0, 970, 653);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FacileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacileActionPerformed
@@ -137,20 +166,28 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private void DifficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DifficileActionPerformed
         difficulty = 3;
         while (coord[0] == coord[1]) {
-            coord[0]=rand.nextInt(7, 10);
-            coord[1]=rand.nextInt(7, 10);
+            coord[0] = rand.nextInt(7, 10);
+            coord[1] = rand.nextInt(7, 10);
 
         }
         initialiserPartie();
     }//GEN-LAST:event_DifficileActionPerformed
     private void initialiserPartie() {
         this.grille = new GrilleDeJeu(coord[0], coord[1]);
+
         panneau_grille.setLayout(new GridLayout(coord[0], coord[1]));
 
-        int dim1 = img_size * coord[0];
-        int dim2 = img_size * coord[1];
-        
-        panneau_grille.setPreferredSize(new Dimension(dim2, dim1));
+        int dim2 = img_size * coord[0];
+        int dim1 = img_size * coord[1];
+
+        panneau_grille.setPreferredSize(new Dimension(dim1, dim2));
+        panneau_ligne.setPreferredSize(new Dimension(60, dim2));
+        panneau_colonne_diagD.setPreferredSize(new Dimension(dim1, 50));
+        panneau_diagM.setPreferredSize(new Dimension(dim1, 50));
+
+        //pack();
+        getContentPane().add(panneau_diagM, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, dim2+50, -1, 50));
+
 
         for (int i = 0; i < coord[0]; ++i) {
             for (int j = 0; j < coord[1]; ++j) {
@@ -158,8 +195,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                 panneau_grille.add(cellGraph);
             }
         }
-        int x = (getContentPane().getWidth() - dim2) / 2;
-        int y = (getContentPane().getHeight() - dim1) / 2;
+        
+        
+        grille.melangerMatriceAleatoirement(20);
+        x = (getContentPane().getWidth() - dim1) / 2;
+        y = (getContentPane().getHeight() - dim2) / 2;
         panneau_grille.setLocation(x, y);
         disablePanneauDifficulté();
 
@@ -170,7 +210,6 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         Normal.setEnabled(false);
         Difficile.setEnabled(false);
         panneau_difficultés.setVisible(false);
-        panneau_grille.setVisible(true);
         panneau_grille.repaint();
 
         if (difficulty == 3) {
@@ -179,6 +218,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         } else {
             nbCoups = 0;
         }
+        label_nbCoups.setText(nbCoups + "");
+        panneau_grille.setVisible(true);
+        panneau_diagM.setVisible(true);
+        panneau_colonne_diagD.setVisible(true);
+        panneau_ligne.setVisible(true);
         panneau_info_partie.setVisible(true);
         panneau_info_partie.repaint();
 
@@ -226,8 +270,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label_nbCoups;
     private javax.swing.JLabel label_txt_nbCoups;
+    private javax.swing.JPanel panneau_colonne_diagD;
+    private javax.swing.JPanel panneau_diagM;
     private javax.swing.JPanel panneau_difficultés;
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JPanel panneau_info_partie;
+    private javax.swing.JPanel panneau_ligne;
     // End of variables declaration//GEN-END:variables
 }
