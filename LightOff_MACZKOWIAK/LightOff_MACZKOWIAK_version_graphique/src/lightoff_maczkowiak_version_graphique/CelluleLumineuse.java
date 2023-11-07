@@ -13,6 +13,7 @@ import java.util.Random;
  * @author lukha
  */
 public class CelluleLumineuse {
+
     public static Random rand = new Random();
     private int etat;
 
@@ -22,7 +23,6 @@ public class CelluleLumineuse {
     * 1 est équivalent à l'ancien "true"
     * 2 est un etat intermédiaire
      */
-
     /**
      * Lorsque une cellule est créé, son état vaut par défaut 0
      */
@@ -30,35 +30,35 @@ public class CelluleLumineuse {
         etat = 0;
 
     }
-    
+
     /**
-     * Change l'état d'une cellule
-     * Depend du niveau de difficulté:
-     * -Facile (1) : l'état oscille entre 0 et 1
-     * -Normale(2) ou difficile (3) : l'état prend une valeur aléatoire entre 
-     * 0 et 2, en excluant sa précédente valeur
+     * Change l'état d'une cellule Depend du niveau de difficulté: -Facile (1) :
+     * l'état oscille entre 0 et 1 -Normale(2) ou difficile (3) : 
+     * l'état change de façon cyclique, avec une probabilité de ne pas s'allumer
      */
     public void activerCellule() {
-        if (Partie.getDifficulty() == 1) {
+        if (fenetreDeJeu.getDifficulty() == 1) {
             if (etat == 0) {
                 etat = 1;
             } else {
                 etat = 0;
             }
         } else {
-            switch (etat) {
-                case 0:
-                    etat = rand.nextInt(1, 3);
-                    break;
-                case 2:
-                    etat=rand.nextInt(1);
-                    break;
-                default:
-                    while(etat==1){
-                        etat=rand.nextInt(3);
-                    break;
-                    }
+            int prob = rand.nextInt(101);
+            if (prob < 75) {
+                switch (etat) {
+                    case 0:
+                        etat = 1;
+                        break;
+                    case 2:
+                        etat = 0;
+                        break;
+                    default:
+                        etat = 2;
+                        break;
+                }
             }
+
         }
     }
 
@@ -69,16 +69,16 @@ public class CelluleLumineuse {
     public int getEtat() {
         return etat;
     }
-    
+
     /**
      * Change l'état de la cellule en 0
      */
     public void eteindreCellule() {
-        if(etat!=0){
-            etat=0;
+        if (etat != 0) {
+            etat = 0;
         }
     }
-    
+
     /**
      * Verifie que l'état de la cellule vaut 0"
      *
@@ -91,23 +91,22 @@ public class CelluleLumineuse {
             return true;
         }
     }
-    
+
     /**
      * Convertit l'état de la cellule sous une forme adéquate pour l'interface
      *
-     * @return Retourne "X" si son état est 1, "O" si son état est 0, ou "I" si 
+     * @return Retourne "X" si son état est 1, "O" si son état est 0, ou "I" si
      * son état est 2
      */
     @Override
     public String toString() {
-        if (this.etat == 1) {
-            return "X";
-        }
-        else if (this.etat==0){
-            return "O";
-        }
-        else{
-            return "I";
+        switch (this.etat) {
+            case 1:
+                return "X";
+            case 0:
+                return "O";
+            default:
+                return "I";
         }
     }
 
