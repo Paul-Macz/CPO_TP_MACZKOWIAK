@@ -16,10 +16,12 @@ public class FenetreVictoire extends javax.swing.JFrame {
     /**
      * Creates new form FenetreVictoire
      */
-    public FenetreVictoire() {
+    public FenetreVictoire(int nb) {
         initComponents();
         getContentPane().setBackground(new Color(54,55,53));
         vic_lab.setForeground(new Color(255,255,255));
+        lb_nbCoups.setText(nb+"");
+        repaint();
     }
 
     /**
@@ -32,13 +34,25 @@ public class FenetreVictoire extends javax.swing.JFrame {
     private void initComponents() {
 
         vic_lab = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lb_nbCoups = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         vic_lab.setFont(new java.awt.Font("Agency FB", 3, 64)); // NOI18N
         vic_lab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vic_lab.setText("YOU WON");
-        getContentPane().add(vic_lab, java.awt.BorderLayout.CENTER);
+        getContentPane().add(vic_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 929, 257));
+
+        jLabel1.setFont(new java.awt.Font("Agency FB", 3, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NOMBRE DE COUPS EFFECTUEES :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 257, 640, 257));
+
+        lb_nbCoups.setFont(new java.awt.Font("Agency FB", 3, 48)); // NOI18N
+        lb_nbCoups.setText("jLabel2");
+        getContentPane().add(lb_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 270, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -49,6 +63,8 @@ public class FenetreVictoire extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lb_nbCoups;
     private javax.swing.JLabel vic_lab;
     // End of variables declaration//GEN-END:variables
 }

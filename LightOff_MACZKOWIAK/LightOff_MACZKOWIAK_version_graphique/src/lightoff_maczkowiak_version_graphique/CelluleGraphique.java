@@ -21,11 +21,21 @@ public class CelluleGraphique extends JLabel{
     ImageIcon img_trouNoir = new ImageIcon(getClass().getResource("/images/trouNoir.png"));
     int size=fenetreDeJeu.img_size;
     
+    /**
+     * Recupère pour chaque case de la grile la CelluleLumineuse associée
+     * @param uneCellule La cellule associée à récupérer
+     */
     public CelluleGraphique (CelluleLumineuse uneCellule){
         celluleAssocié=uneCellule;
     }
     
-   
+    /**
+     * Modifie la taille d'une image et la renvoie sous forme d'icone
+     * @param Img Correspond à l'image d'origine
+     * @param width La largeur souhaitée
+     * @param height La hauteur souhaitée
+     * @return
+     */
     public static ImageIcon getScaledIcon(ImageIcon Img, int width, int height ){
         
         Image srcImage = Img.getImage();
@@ -37,6 +47,10 @@ public class CelluleGraphique extends JLabel{
         return resizedIcon;
     }
     
+    /**
+     * Redessine la case associé avec l'image souhaitée
+     * @param G
+     */
     @Override
     public void paintComponent (Graphics G){
         super.paintComponent(G);

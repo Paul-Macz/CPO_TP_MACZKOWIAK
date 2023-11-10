@@ -33,7 +33,8 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private ArrayList<JButton> buttonArray;
 
     /**
-     * Creates new form fenetreDeJeu
+     * Crée une nouvelle fenetre fenetreDeJeu 
+     * Customise l'apparence de la page pour avoir le menu
      */
     public fenetreDeJeu() {
         this.buttonArray = new ArrayList<>();
@@ -192,6 +193,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         }
         initialiserPartie();
     }//GEN-LAST:event_DifficileActionPerformed
+    
     private void initialiserPartie() {
 
         //création des grilles
@@ -308,44 +310,33 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     }
 
     private void actionconsequences() {
-        int endval = 0;
+
         if (difficulty == 3) {
             --nbCoups;
             if (nbCoups == 0) {
                 for (int k = 0; k < buttonArray.size(); k++) {
                     buttonArray.get(k).setEnabled(false);
                 }
-                endval = 1;
+                this.dispose();
+                FenetrePerdue f = new FenetrePerdue();
+                f.setVisible(true);
+                f.pack();
             }
         } else {
             ++nbCoups;
         }
         label_nbCoups.setText(nbCoups + "");
         panneau_info_partie.repaint();
-        if (endval == 1) {
-            Wait(500);
-            FenetrePerdue f = new FenetrePerdue();
-            f.setVisible(true);
-            f.pack();
-        }
+
         //Game won ?
         if (grille.cellulesToutesEteintes()) {
-            Wait(500);
             this.dispose();
-            FenetreVictoire f = new FenetreVictoire();
+            FenetreVictoire f = new FenetreVictoire(nbCoups);
             f.setVisible(true);
             f.pack();
         }
     }
-    
-    private void Wait(int time){
-        try {
-                Thread.sleep(time);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-    }
-    
+
     private void disablePanneauDifficulté() {
         Facile.setEnabled(false);
         Normal.setEnabled(false);
