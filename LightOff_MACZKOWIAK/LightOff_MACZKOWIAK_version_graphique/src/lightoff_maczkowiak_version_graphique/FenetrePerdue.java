@@ -4,6 +4,8 @@
  */
 package lightoff_maczkowiak_version_graphique;
 
+import java.awt.Color;
+
 /**
  *
  * @author lukha
@@ -15,6 +17,7 @@ public class FenetrePerdue extends javax.swing.JFrame {
      */
     public FenetrePerdue() {
         initComponents();
+        getContentPane().setBackground(new Color(54,55,53));
     }
 
     /**
@@ -27,16 +30,35 @@ public class FenetrePerdue extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        bt_retry = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 3, 64)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("YOU LOST");
-        getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -100, 831, 421));
+
+        bt_retry.setFont(new java.awt.Font("Agency FB", 3, 24)); // NOI18N
+        bt_retry.setText("NOUVELLE PARTIE");
+        bt_retry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_retryActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bt_retry, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 180, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_retryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_retryActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        fenetreDeJeu f = new fenetreDeJeu();
+        f.setVisible(true);
+    }//GEN-LAST:event_bt_retryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,6 +96,7 @@ public class FenetrePerdue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_retry;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

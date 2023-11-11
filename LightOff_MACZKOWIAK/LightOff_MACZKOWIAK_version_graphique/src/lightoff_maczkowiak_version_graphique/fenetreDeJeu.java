@@ -24,9 +24,9 @@ import static lightoff_maczkowiak_version_graphique.Partie.rand;
 public class fenetreDeJeu extends javax.swing.JFrame {
 
     private GrilleDeJeu grille;
-    private int nbCoups;
+    private static int nbCoups;
     private static int difficulty = 0;
-    int[] coord = new int[2];
+    static int[] coord = new int[2];
     static int img_size = 60;
     int x, y;
     int i;
@@ -40,7 +40,8 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         this.buttonArray = new ArrayList<>();
         initComponents();
         getContentPane().setBackground(new Color(54, 55, 53));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        
         int x = (getWidth() - panneau_difficultés.getWidth()) / 2;
 
         panneau_difficultés.setLocation(x, panneau_difficultés.getHeight());
@@ -55,8 +56,31 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         panneau_colonne_diagD.setVisible(false);
         panneau_ligne.setVisible(false);
         panneau_info_partie.setVisible(false);
-
+        /*Menu menu = new Menu(this);
+        setExtendedState(JFrame.ICONIFIED);
+        menu.setVisible(true);*/
     }
+
+    public void UpdateValues(int difficulty, int nbCoups, int[] coord){
+        setDifficulty(difficulty);
+        setCoord(coord);
+        setNbCoups(nbCoups);
+        initialiserPartie();
+    }
+
+    public static void setDifficulty(int difficulty) {
+        fenetreDeJeu.difficulty = difficulty;
+    }
+
+    public static void setNbCoups(int nbCoups) {
+        fenetreDeJeu.nbCoups = nbCoups;
+    }
+
+    public static void setCoord(int[] coord) {
+        fenetreDeJeu.coord = coord;
+    }
+
+   
 
     /**
      *
@@ -186,7 +210,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void DifficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DifficileActionPerformed
         difficulty = 3;
-        nbCoups = 40;
+        nbCoups = 60;
         while (coord[0] == coord[1]) {
             coord[0] = rand.nextInt(7, 10);
             coord[1] = rand.nextInt(7, 10);
@@ -198,7 +222,6 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         //création des grilles
         this.grille = new GrilleDeJeu(coord[0], coord[1]);
-
         panneau_grille.setLayout(new GridLayout(coord[0], coord[1]));
         panneau_ligne.setLayout(new GridLayout(coord[0], 1));
         panneau_colonne_diagD.setLayout(new GridLayout(1, coord[1] * 2));
@@ -388,6 +411,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new fenetreDeJeu().setVisible(true);
+                        
             }
         });
     }

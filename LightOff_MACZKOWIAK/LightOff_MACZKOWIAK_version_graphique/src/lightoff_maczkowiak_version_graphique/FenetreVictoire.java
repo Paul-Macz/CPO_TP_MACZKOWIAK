@@ -19,7 +19,6 @@ public class FenetreVictoire extends javax.swing.JFrame {
     public FenetreVictoire(int nb) {
         initComponents();
         getContentPane().setBackground(new Color(54,55,53));
-        vic_lab.setForeground(new Color(255,255,255));
         lb_nbCoups.setText(nb+"");
         repaint();
     }
@@ -36,26 +35,46 @@ public class FenetreVictoire extends javax.swing.JFrame {
         vic_lab = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lb_nbCoups = new javax.swing.JLabel();
+        bt_retry = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         vic_lab.setFont(new java.awt.Font("Agency FB", 3, 64)); // NOI18N
+        vic_lab.setForeground(new java.awt.Color(255, 255, 255));
         vic_lab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vic_lab.setText("YOU WON");
         getContentPane().add(vic_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 929, 257));
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 3, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NOMBRE DE COUPS EFFECTUEES :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 257, 640, 257));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 640, 257));
 
         lb_nbCoups.setFont(new java.awt.Font("Agency FB", 3, 48)); // NOI18N
+        lb_nbCoups.setForeground(new java.awt.Color(255, 255, 255));
         lb_nbCoups.setText("jLabel2");
-        getContentPane().add(lb_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 270, 240));
+        getContentPane().add(lb_nbCoups, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 270, 240));
+
+        bt_retry.setFont(new java.awt.Font("Agency FB", 3, 24)); // NOI18N
+        bt_retry.setText("NOUVELLE PARTIE");
+        bt_retry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_retryActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bt_retry, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 180, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_retryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_retryActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        fenetreDeJeu f = new fenetreDeJeu();
+        f.setVisible(true);
+    }//GEN-LAST:event_bt_retryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -63,6 +82,7 @@ public class FenetreVictoire extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_retry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lb_nbCoups;
     private javax.swing.JLabel vic_lab;
