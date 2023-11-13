@@ -61,12 +61,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         menu.setVisible(true);*/
     }
 
-    public void UpdateValues(int difficulty, int nbCoups, int[] coord){
-        setDifficulty(difficulty);
-        setCoord(coord);
-        setNbCoups(nbCoups);
-        initialiserPartie();
-    }
+
 
     public static void setDifficulty(int difficulty) {
         fenetreDeJeu.difficulty = difficulty;
