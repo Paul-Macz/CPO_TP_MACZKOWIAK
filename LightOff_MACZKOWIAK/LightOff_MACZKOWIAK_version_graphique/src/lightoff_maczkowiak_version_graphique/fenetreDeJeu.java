@@ -30,6 +30,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     static int img_size = 60;
     int x, y;
     int i;
+    private int nbmelanges;
     private ArrayList<JButton> buttonArray;
 
     /**
@@ -192,6 +193,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         coord[0] = 4;
         coord[1] = 4;
         nbCoups = 0;
+        nbmelanges=10;
         initialiserPartie();
     }//GEN-LAST:event_FacileActionPerformed
 
@@ -200,12 +202,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         coord[0] = 6;
         coord[1] = 6;
         nbCoups = 0;
+        nbmelanges=15;
         initialiserPartie();
     }//GEN-LAST:event_NormalActionPerformed
 
     private void DifficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DifficileActionPerformed
         difficulty = 3;
         nbCoups = 60;
+        nbmelanges=15;
         while (coord[0] == coord[1]) {
             coord[0] = rand.nextInt(7, 10);
             coord[1] = rand.nextInt(7, 10);
@@ -243,7 +247,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         getContentPane().add(panneau_diagM, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, dimy + 50, -1, 60));
         getContentPane().add(panneau_info_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(dimx + 100, (getContentPane().getHeight() - 140) / 4, 370, 140));
 
-        grille.melangerMatriceAleatoirement(20);
+        grille.melangerMatriceAleatoirement(nbmelanges);
 
         pack();
         disablePanneauDifficulté();
